@@ -6,13 +6,13 @@
   <parent>
     <groupId>io.vertx</groupId>
     <artifactId>vertx-template-engines</artifactId>
-    <version>4.0.3-SNAPSHOT</version>
+    <version>4.0.3</version>
   </parent>
 
   <artifactId>vertx-web-templ-jte</artifactId>
 
   <properties>
-    <jte.version>1.6.0</jte.version>
+    <jte.version>1.7.0</jte.version>
   </properties>
 
   <dependencies>
@@ -58,7 +58,25 @@
           </execution>
         </executions>
       </plugin>
-
+      <plugin>
+        <groupId>gg.jte</groupId>
+        <artifactId>jte-maven-plugin</artifactId>
+        <version>${jte.version}</version>
+        <configuration>
+          <sourceDirectory>${project.basedir}/src/test/templates</sourceDirectory>
+          <targetDirectory>${project.build.directory}/test-classes</targetDirectory>
+          <contentType>Html</contentType>
+          <binaryStaticContent>true</binaryStaticContent>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>process-test-classes</phase>
+            <goals>
+              <goal>precompile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
